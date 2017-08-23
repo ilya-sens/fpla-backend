@@ -17,6 +17,9 @@ module.exports = {
       collection: 'ScenarioScript',
       via: 'scenario'
     },
+    sequence: {
+      type: 'text'
+    }
   },
 
   beforeDestroy(criteria, next) {

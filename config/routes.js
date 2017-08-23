@@ -7,5 +7,7 @@
  */
 
 module.exports = {
-  routes: {}
+  routes: {
+    'GET /v1/scenarios/:scenarioId/generate': 'ScenarioController.generate',
+  }
 };
