@@ -18,7 +18,12 @@ module.exports = {
       required: 'true',
     },
     scenarioScripts: {
-      collection: 'ScenarioScript'
+      collection: 'ScenarioScript',
+      via: 'script'
     },
+  },
+
+  beforeDestroy(criteria, next) {
+    ScenarioScript.destroy({script: criteria.where.id}).exec((err) => {next()});
   },
 };

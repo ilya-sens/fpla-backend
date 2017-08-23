@@ -61,7 +61,7 @@ module.exports = {
      * from other models which are linked by associations
      * @type {Boolean}
      */
-    populate: false,
+    populate: true,
 
     /**
      * Whether to run Model.watch() in the find and findOne blueprint actions
@@ -73,6 +73,6 @@ module.exports = {
      * The default number of records to show in the response from a "find" action
      * @type {Number}
      */
-    defaultLimit: 20
+    defaultLimit: 1000,
   }
 };
