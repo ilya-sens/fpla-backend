@@ -24,7 +24,10 @@ class Scenario(AbstractScenario):
     return ScenarioScript.find({scenario: scenarioId}).populate('script')
       .then((scenarioScripts) => {
         _.orderBy(scenarioScripts, ['index']).forEach((it) => {
-          result += it.script.sequence + "\n";
+          _.split(it.script.sequence, "\n").forEach((it) => {
+            result += "    " + it + "\n";
+          });
+          result += "\n";
         });
         return Scenario.update({id: scenarioId}, {sequence: result})
           .exec((error, scenario) => {
