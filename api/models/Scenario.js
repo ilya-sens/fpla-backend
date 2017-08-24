@@ -17,6 +17,10 @@ module.exports = {
       collection: 'ScenarioScript',
       via: 'scenario'
     },
+    fileName: {
+      type: 'string',
+      required: true,
+    },
     sequence: {
       type: 'text'
     }
