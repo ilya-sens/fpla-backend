@@ -20,6 +20,8 @@ module.exports = {
     let result = `from de.ananyev.fpla.runner.scenario.abstract_scenario import AbstractScenario
 
 class Scenario(AbstractScenario):
+
+    scenario_id = ${scenarioId}
 `;
     return ScenarioScript.find({scenario: scenarioId}).populate('script')
       .then((scenarioScripts) => {

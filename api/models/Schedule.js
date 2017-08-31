@@ -21,5 +21,9 @@ module.exports = {
       type: 'string',
       required: true,
     },
+    file: {
+      type: 'string',
+      required: true,
+    },
   },
 };
