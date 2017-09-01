@@ -19,13 +19,17 @@ module.exports = {
     let scheduleId = _.toNumber(req.param('id'));
 
     let result = `from de.ananyev.fpla.runner.scheduler.abstract_scheduler import AbstractScheduler
+from de.ananyev.fpla.runner.util import gen_db_resource
+from de.ananyev.fpla.runner.controller import main_controller
 
 import schedule
 import time
 
 class Scheduler(AbstractScheduler):
         
-    scheduler_id = ${scheduleId}
+    def __init__(self):
+        super().__init__() 
+        self.scheduler_id = ${scheduleId}
         
         
 `;

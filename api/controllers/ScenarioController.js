@@ -18,10 +18,15 @@ module.exports = {
     let scenarioId = _.toNumber(req.param('scenarioId'));
 
     let result = `from de.ananyev.fpla.runner.scenario.abstract_scenario import AbstractScenario
+from de.ananyev.fpla.runner.util import gen_db_resource
+
 
 class Scenario(AbstractScenario):
-
-    scenario_id = ${scenarioId}
+        
+        
+    def __init__(self):
+        super().__init__() 
+        self.scenario_id = ${scenarioId}
 `;
     return ScenarioScript.find({scenario: scenarioId}).populate('script')
       .then((scenarioScripts) => {
