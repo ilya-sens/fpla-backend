@@ -21,16 +21,17 @@ module.exports = {
     let result = `from de.ananyev.fpla.runner.scheduler.abstract_scheduler import AbstractScheduler
 from de.ananyev.fpla.runner.util import gen_db_resource
 from de.ananyev.fpla.runner.controller import main_controller
+from de.ananyev.fpla.runner.util.browser_type import BrowserType
 
 import schedule
 import time
+
 
 class Scheduler(AbstractScheduler):
         
     def __init__(self):
         super().__init__() 
         self.scheduler_id = ${scheduleId}
-        
         
 `;
     return Schedule.findOne({id: scheduleId})
@@ -41,10 +42,12 @@ class Scheduler(AbstractScheduler):
         _.split(schedule.sequence, "\n").forEach((it) => {
           result += "    " + it + "\n";
         });
-        result += "\n";
+        result += `\n
+if __name__ == '__main__':
+    Scheduler().run()`;
         return Schedule.update({id: scheduleId}, {file: result})
           .exec((error, schedule) => {
-            return res.json(schedule);
+            return res.json(schedule)[0];
           });
       })
   }

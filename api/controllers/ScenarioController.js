@@ -19,14 +19,16 @@ module.exports = {
 
     let result = `from de.ananyev.fpla.runner.scenario.abstract_scenario import AbstractScenario
 from de.ananyev.fpla.runner.util import gen_db_resource
+from de.ananyev.fpla.runner.util.browser_type import BrowserType
+from de.ananyev.fpla.runner.util import browser_helper
 
 
 class Scenario(AbstractScenario):
         
-        
     def __init__(self):
         super().__init__() 
         self.scenario_id = ${scenarioId}
+        
 `;
     return ScenarioScript.find({scenario: scenarioId}).populate('script')
       .then((scenarioScripts) => {
@@ -34,11 +36,13 @@ class Scenario(AbstractScenario):
           _.split(it.script.sequence, "\n").forEach((it) => {
             result += "    " + it + "\n";
           });
-          result += "\n";
+          result += '\n';
         });
+        result += `if __name__ == '__main__':
+    Scenario().run()`;
         return Scenario.update({id: scenarioId}, {sequence: result})
           .exec((error, scenario) => {
-            return res.json(scenario);
+            return res.json(scenario)[0];
           });
       })
       .fail((err) => {

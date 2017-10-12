@@ -23,7 +23,7 @@ module.exports = {
     },
     file: {
       type: 'string',
-      required: true,
+      required: false,
     },
   },
 };

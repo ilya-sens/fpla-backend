@@ -1,4 +1,4 @@
-# fpla-backend
+# Fpla Backend
 
 ## Installation
 
